@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yangtse.life.mapper.Crowdfunding_orderMapper">
+  <resultMap id="BaseResultMap" type="org.yangtse.life.bean.Crowdfunding_orderKey">
+    <id column="crowdfunding_id" jdbcType="INTEGER" property="crowdfundingId" />
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="org.yangtse.life.bean.Crowdfunding_orderKey">
+    delete from crowdfunding_order
+    where crowdfunding_id = #{crowdfundingId,jdbcType=INTEGER}
+      and order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.yangtse.life.bean.Crowdfunding_orderKey">
+    insert into crowdfunding_order (crowdfunding_id, order_id)
+    values (#{crowdfundingId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.yangtse.life.bean.Crowdfunding_orderKey">
+    insert into crowdfunding_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="crowdfundingId != null">
+        crowdfunding_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="crowdfundingId != null">
+        #{crowdfundingId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="org.yangtse.life.bean.Crowdfunding_orderKey">
+    <id column="crowdfunding_id" jdbcType="INTEGER" property="crowdfundingId" />
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="org.yangtse.life.bean.Crowdfunding_orderKey">
+    delete from crowdfunding_order
+    where crowdfunding_id = #{crowdfundingId,jdbcType=INTEGER}
+      and order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.yangtse.life.bean.Crowdfunding_orderKey">
+    insert into crowdfunding_order (crowdfunding_id, order_id)
+    values (#{crowdfundingId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.yangtse.life.bean.Crowdfunding_orderKey">
+    insert into crowdfunding_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="crowdfundingId != null">
+        crowdfunding_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="crowdfundingId != null">
+        #{crowdfundingId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swjtu.cn.mapper.Classroom_pickMapper" >
+  <resultMap id="BaseResultMap" type="com.swjtu.cn.bean.Classroom_pick" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="classroom_id" property="classroomId" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="pick_time" property="pickTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, classroom_id, num, pick_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classroom_pick
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classroom_pick
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swjtu.cn.bean.Classroom_pick" >
+    insert into classroom_pick (id, classroom_id, num, 
+      pick_time)
+    values (#{id,jdbcType=INTEGER}, #{classroomId,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
+      #{pickTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.swjtu.cn.bean.Classroom_pick" >
+    insert into classroom_pick
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="classroomId != null" >
+        classroom_id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="pickTime != null" >
+        pick_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null" >
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="pickTime != null" >
+        #{pickTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.swjtu.cn.bean.Classroom_pick" >
+    update classroom_pick
+    <set >
+      <if test="classroomId != null" >
+        classroom_id = #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="pickTime != null" >
+        pick_time = #{pickTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.swjtu.cn.bean.Classroom_pick" >
+    update classroom_pick
+    set classroom_id = #{classroomId,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      pick_time = #{pickTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByclaid" resultMap="BaseResultMap">
+  	select * from classroom_pick where pick_time = (select max(pick_time) from classroom_pick where classroom_id = #{0} group by classroom_id) 
+  	and classroom_id = #{0} 	
+  </select>
+  <select id="getrecommends" resultMap="BaseResultMap">
+	select * FROM classroom inner join 
+	(select classroom_pick.classroom_id,max(pick_time) as pick_time,num from classroom_pick GROUP BY classroom_pick.classroom_id) as t
+	on classroom.id = t.classroom_id where (num*100/max) &lt; #{0}
+  </select>  
+  <select id="getrecommendbybuilding" resultMap="BaseResultMap">
+	select * FROM classroom inner join 
+	(select T.classroom_id,max(pick_time) as pick_time,num from (select * from classroom_pick order by pick_time DESC)T GROUP BY T.classroom_id) as t
+	on classroom.id = t.classroom_id where (num*100/max) &lt; #{0} and building = #{1} order by id desc
+  </select>  
+
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.daqian.gallery.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="org.daqian.gallery.bean.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="artist_id" property="artistId" jdbcType="INTEGER" />
+    <result column="pic_addr" property="picAddr" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="mark" property="mark" jdbcType="VARCHAR" />
+    <result column="texture" property="texture" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="newornot" property="newornot" jdbcType="INTEGER" />
+    <result column="inscriptions" property="inscriptions" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, type_id, artist_id, pic_addr, price, size, time, mark, texture, remark, 
+    uploadtime, newornot, inscriptions
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.daqian.gallery.bean.Product" >
+    insert into product (id, name, type_id, 
+      artist_id, pic_addr, price, 
+      size, time, mark, texture, 
+      remark, uploadtime, newornot, 
+      inscriptions)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{artistId,jdbcType=INTEGER}, #{picAddr,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{size,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{mark,jdbcType=VARCHAR}, #{texture,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{uploadtime,jdbcType=TIMESTAMP}, #{newornot,jdbcType=INTEGER}, 
+      #{inscriptions,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.daqian.gallery.bean.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="artistId != null" >
+        artist_id,
+      </if>
+      <if test="picAddr != null" >
+        pic_addr,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+      <if test="texture != null" >
+        texture,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime,
+      </if>
+      <if test="newornot != null" >
+        newornot,
+      </if>
+      <if test="inscriptions != null" >
+        inscriptions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="artistId != null" >
+        #{artistId,jdbcType=INTEGER},
+      </if>
+      <if test="picAddr != null" >
+        #{picAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="texture != null" >
+        #{texture,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newornot != null" >
+        #{newornot,jdbcType=INTEGER},
+      </if>
+      <if test="inscriptions != null" >
+        #{inscriptions,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.daqian.gallery.bean.Product" >
+    update product
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="artistId != null" >
+        artist_id = #{artistId,jdbcType=INTEGER},
+      </if>
+      <if test="picAddr != null" >
+        pic_addr = #{picAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="texture != null" >
+        texture = #{texture,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newornot != null" >
+        newornot = #{newornot,jdbcType=INTEGER},
+      </if>
+      <if test="inscriptions != null" >
+        inscriptions = #{inscriptions,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.daqian.gallery.bean.Product" >
+    update product
+    set name = #{name,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      artist_id = #{artistId,jdbcType=INTEGER},
+      pic_addr = #{picAddr,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      size = #{size,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      mark = #{mark,jdbcType=VARCHAR},
+      texture = #{texture,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      newornot = #{newornot,jdbcType=INTEGER},
+      inscriptions = #{inscriptions,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

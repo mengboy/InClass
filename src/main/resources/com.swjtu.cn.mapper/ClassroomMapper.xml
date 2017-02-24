@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swjtu.cn.mapper.ClassroomMapper" >
+  <resultMap id="BaseResultMap" type="com.swjtu.cn.bean.Classroom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="max" property="max" jdbcType="INTEGER" />
+    <result column="building" property="building" jdbcType="INTEGER" />
+    <result column="floor" property="floor" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, status, max, building, floor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classroom
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classroom
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swjtu.cn.bean.Classroom" >
+    insert into classroom (id, status, max, 
+      building, floor)
+    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{max,jdbcType=INTEGER}, 
+      #{building,jdbcType=INTEGER}, #{floor,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.swjtu.cn.bean.Classroom" >
+    insert into classroom
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="max != null" >
+        max,
+      </if>
+      <if test="building != null" >
+        building,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="max != null" >
+        #{max,jdbcType=INTEGER},
+      </if>
+      <if test="building != null" >
+        #{building,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.swjtu.cn.bean.Classroom" >
+    update classroom
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="max != null" >
+        max = #{max,jdbcType=INTEGER},
+      </if>
+      <if test="building != null" >
+        building = #{building,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null" >
+        floor = #{floor,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.swjtu.cn.bean.Classroom" >
+    update classroom
+    set status = #{status,jdbcType=INTEGER},
+      max = #{max,jdbcType=INTEGER},
+      building = #{building,jdbcType=INTEGER},
+      floor = #{floor,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectall" resultMap="BaseResultMap" parameterType="com.swjtu.cn.common.QueryBase" >
+    select 
+    <include refid="Base_Column_List" />
+    from classroom
+    <if test="parameters.building != null">
+    	where building = #{parameters.building}
+    </if>
+    order by id asc limit #{firstRow},#{pageSize}
+  </select>
+  <select id="selectallcount" resultType="long" parameterType="com.swjtu.cn.common.QueryBase" >
+    select 
+    count(id)
+    from classroom 
+    <if test="parameters.building != null">
+    	where building = #{parameters.building}
+    </if>
+  </select>
+  <select id="selectBy" resultMap="BaseResultMap" parameterType="com.swjtu.cn.common.QueryBase">
+  	select
+  	<include refid="Base_Column_List" />
+  	from classroom 
+  	<if test="parameters.type == 1">
+  	where id like #{parameters.buildingandfloor}
+  	</if>
+  	<if test="parameters.type == 2">
+  	id = #{parameters.id}
+  	</if> 
+  	<if test="parameters.type == 3">
+  	</if>   	  	
+  	limit #{firstRow},#{pageSize}
+  </select>  
+  <select id="selectBycount" resultType="long" parameterType="com.swjtu.cn.common.QueryBase">
+  	select
+  	count(id)
+  	from classroom 
+  	<if test="parameters.type == 1">
+  	where id like #{parameters.buildingandfloor}
+  	</if>
+  	<if test="parameters.type == 2">
+  	id = #{parameters.id}
+  	</if> 
+  	<if test="parameters.type == 3">
+  	</if>   	
+  </select>    
+  <select id="getfreeroom" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from classroom where status = 0
+  </select>
+  <select id="selectallnopage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from classroom
+  </select>  
+</mapper>

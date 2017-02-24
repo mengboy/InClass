@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yangtse.life.mapper.CompanyUserMapper">
+  <resultMap id="BaseResultMap" type="org.yangtse.life.bean.CompanyUser">
+    <id column="company_id" jdbcType="INTEGER" property="companyId" />
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, user_id, job, tel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="org.yangtse.life.bean.CompanyUserKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from company_user
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.yangtse.life.bean.CompanyUserKey">
+    delete from company_user
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.yangtse.life.bean.CompanyUser">
+    insert into company_user (company_id, user_id, job, 
+      tel)
+    values (#{companyId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{job,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.yangtse.life.bean.CompanyUser">
+    insert into company_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yangtse.life.bean.CompanyUser">
+    update company_user
+    <set>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.yangtse.life.bean.CompanyUser">
+    update company_user
+    set job = #{job,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="org.yangtse.life.bean.CompanyUser">
+    <id column="company_id" jdbcType="INTEGER" property="companyId" />
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_id, user_id, job, tel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="org.yangtse.life.bean.CompanyUserKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from company_user
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.yangtse.life.bean.CompanyUserKey">
+    delete from company_user
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.yangtse.life.bean.CompanyUser">
+    insert into company_user (company_id, user_id, job, 
+      tel)
+    values (#{companyId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{job,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.yangtse.life.bean.CompanyUser">
+    insert into company_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yangtse.life.bean.CompanyUser">
+    update company_user
+    <set>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.yangtse.life.bean.CompanyUser">
+    update company_user
+    set job = #{job,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR}
+    where company_id = #{companyId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

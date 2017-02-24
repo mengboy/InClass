@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swjtu.cn.mapper.LightMapper" >
+  <resultMap id="BaseResultMap" type="com.swjtu.cn.bean.Light" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="changedstatus" property="changedstatus" jdbcType="INTEGER" />
+    <result column="changedmode" property="changedmode" jdbcType="INTEGER" />
+    <result column="mode" property="mode" jdbcType="INTEGER" />
+    <result column="statusischange" property="statusischange" jdbcType="INTEGER" />
+    <result column="modeischange" property="modeischange" jdbcType="INTEGER" />
+    <result column="statuschangeissuccess" property="statuschangeissuccess" jdbcType="INTEGER" />
+    <result column="modechangeissuccess" property="modechangeissuccess" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, status, changedstatus, changedmode, mode, statusischange, modeischange, statuschangeissuccess, 
+    modechangeissuccess, time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from light
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from light
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swjtu.cn.bean.Light" >
+    insert into light (id, status, changedstatus, 
+      changedmode, mode, statusischange, 
+      modeischange, statuschangeissuccess, modechangeissuccess, 
+      time)
+    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{changedstatus,jdbcType=INTEGER}, 
+      #{changedmode,jdbcType=INTEGER}, #{mode,jdbcType=INTEGER}, #{statusischange,jdbcType=INTEGER}, 
+      #{modeischange,jdbcType=INTEGER}, #{statuschangeissuccess,jdbcType=INTEGER}, #{modechangeissuccess,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.swjtu.cn.bean.Light" >
+    insert into light
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="changedstatus != null" >
+        changedstatus,
+      </if>
+      <if test="changedmode != null" >
+        changedmode,
+      </if>
+      <if test="mode != null" >
+        mode,
+      </if>
+      <if test="statusischange != null" >
+        statusischange,
+      </if>
+      <if test="modeischange != null" >
+        modeischange,
+      </if>
+      <if test="statuschangeissuccess != null" >
+        statuschangeissuccess,
+      </if>
+      <if test="modechangeissuccess != null" >
+        modechangeissuccess,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="changedstatus != null" >
+        #{changedstatus,jdbcType=INTEGER},
+      </if>
+      <if test="changedmode != null" >
+        #{changedmode,jdbcType=INTEGER},
+      </if>
+      <if test="mode != null" >
+        #{mode,jdbcType=INTEGER},
+      </if>
+      <if test="statusischange != null" >
+        #{statusischange,jdbcType=INTEGER},
+      </if>
+      <if test="modeischange != null" >
+        #{modeischange,jdbcType=INTEGER},
+      </if>
+      <if test="statuschangeissuccess != null" >
+        #{statuschangeissuccess,jdbcType=INTEGER},
+      </if>
+      <if test="modechangeissuccess != null" >
+        #{modechangeissuccess,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.swjtu.cn.bean.Light" >
+    update light
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="changedstatus != null" >
+        changedstatus = #{changedstatus,jdbcType=INTEGER},
+      </if>
+      <if test="changedmode != null" >
+        changedmode = #{changedmode,jdbcType=INTEGER},
+      </if>
+      <if test="mode != null" >
+        mode = #{mode,jdbcType=INTEGER},
+      </if>
+      <if test="statusischange != null" >
+        statusischange = #{statusischange,jdbcType=INTEGER},
+      </if>
+      <if test="modeischange != null" >
+        modeischange = #{modeischange,jdbcType=INTEGER},
+      </if>
+      <if test="statuschangeissuccess != null" >
+        statuschangeissuccess = #{statuschangeissuccess,jdbcType=INTEGER},
+      </if>
+      <if test="modechangeissuccess != null" >
+        modechangeissuccess = #{modechangeissuccess,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.swjtu.cn.bean.Light" >
+    update light
+    set status = #{status,jdbcType=INTEGER},
+      changedstatus = #{changedstatus,jdbcType=INTEGER},
+      changedmode = #{changedmode,jdbcType=INTEGER},
+      mode = #{mode,jdbcType=INTEGER},
+      statusischange = #{statusischange,jdbcType=INTEGER},
+      modeischange = #{modeischange,jdbcType=INTEGER},
+      statuschangeissuccess = #{statuschangeissuccess,jdbcType=INTEGER},
+      modechangeissuccess = #{modechangeissuccess,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
