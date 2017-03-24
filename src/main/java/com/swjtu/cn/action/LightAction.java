@@ -115,6 +115,7 @@ public class LightAction {
 	//与网关交互的接口
 	@RequestMapping("/inclass/api/light/packagemessage")
 	public Object packageInfo(HttpServletRequest request,@RequestParam String message,@RequestParam(required=false) String peo_num){
+		System.out.print("message" + message + peo_num);
 		int sta = 0;
 		Light light_update = null;
 		List<Light> list_status = this.lightService.getstatuschange();
@@ -127,9 +128,7 @@ public class LightAction {
 		//先获得状态更改的终端,每次只处理第一个变化的
 		if(list_status.size() != 0){
 			Light light = list_status.get(0);
-			
 			{
-				
 				String idid = light.getId() + "";
 				String send_id = "";
 				String change_status = "";
@@ -145,11 +144,11 @@ public class LightAction {
 				for(Light light1:list_change_classroom_lights){
 					if((int)light1.getId() == (int)light.getId()){
 						//System.out.println("lightid"+light.getId()+",light1 idid:"+light1.getId()+"getchange:"+light1.getChanged());
-						change_status = change_status+light1.getChanged();
+						change_status = change_status + light1.getChanged();
 					}
 					else{
 						//System.out.println("lightid"+light.getId()+",light1 idid:"+light1.getId()+"getstatus:"+light1.getStatus());
-						change_status = change_status+light1.getStatus();
+						change_status = change_status + light1.getStatus();
 					}
 				}
 				statuschange = statuschange + send_id + "*" + change_status;

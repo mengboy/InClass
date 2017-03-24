@@ -29,8 +29,7 @@ public class QueryBase implements Serializable{
 	
 	private String sidx;
 	private String sord;
-	
-	
+
 	
 	private Map<String, Object> parameters=new HashMap<String, Object>();
 	private List<? extends Object> results;

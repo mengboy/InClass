@@ -85,6 +85,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springfr
 			</list>
 		</property>
 	</bean>
+
 	<aop:config>
 		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
 	</aop:config>

@@ -90,7 +90,7 @@
   </select>  
   <select id="getrecommendbybuilding" resultMap="BaseResultMap">
 	select * FROM classroom inner join 
-	(select T.classroom_id,max(pick_time) as pick_time,num from (select * from classroom_pick order by pick_time DESC)T GROUP BY T.classroom_id) as t
+	(select T.classroom_id,max(pick_time) as pick_time,num from (select * from classroom_pick order by pick_time DESC)T GROUP BY T.classroom_id, T.num) as t
 	on classroom.id = t.classroom_id where (num*100/max) &lt; #{0} and building = #{1} order by id desc
   </select>  
 
